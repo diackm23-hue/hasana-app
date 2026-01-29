@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Clic Une Hasana</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        :root {
+            --primary-color: #065f46; /* Vert émeraude */
+            --accent-color: #d97706;  /* Or/Ambre */
+            --bg-color: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        h1 { color: var(--primary-color); font-size: 1.5rem; }
+
+        #rappel-container {
+            margin: 20px 0;
+            font-size: 1.2rem;
+            color: #334155;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button:active { transform: scale(0.95); }
+        button:hover { background-color: #047857; }
+
+        footer { margin-top: 30px; font-size: 0.8rem; color: #94a3b8; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>✨ Un Clic, Une Hasana</h1>
+        <div id="rappel-container">
+            Cliquez sur le bouton pour un rappel...
+        </div>
+        <button onclick="genererRappel()">Afficher un rappel</button>
+    </div>
+
+    <footer>Puisse Allah accepter nos bonnes œuvres</footer>
+
+    <script>
+        const rappels = [
+            "« Certes, avec la difficulté vient la facilité. » (Coran 94:6)",
+            "Le Prophète (ﷺ) a dit : « La religion, c'est le bon conseil. »",
+            "SubhanAllah (Gloire à Allah)",
+            "Alhamdulillah (Louange à Allah)",
+            "Allahu Akbar (Allah est le plus Grand)",
+            "« Souvenez-vous de Moi, Je me souviendrai de vous. » (Coran 2:152)",
+            "Le Prophète (ﷺ) a dit : « La pureté est la moitié de la foi. »",
+            "Astaghfirullah (Je demande pardon à Allah)",
+            "La hawla wa la quwwata illa billah (Il n'y a de force ni de puissance que par Allah)",
+            "« Ô Seigneur ! Accorde-nous le bien ici-bas et le bien dans l'au-delà. »",
+            "Le Prophète (ﷺ) a dit : « Celui qui invoque Allah pour son frère, l'Ange dit : Amine, et de même pour toi. »"
+        ];
+
+        function genererRappel() {
+            const index = Math.floor(Math.random() * rappels.length);
+            document.getElementById('rappel-container').innerText = rappels[index];
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
